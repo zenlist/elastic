@@ -78,7 +78,7 @@ pub struct SearchResponse<T> {
 /** Struct to hold the search's Hits, serializable to type `T` or `serde_json::Value`. */
 #[derive(Deserialize, Debug)]
 struct HitsWrapper<T> {
-    total: i64,
+    total: u64,
     max_score: Option<f32>,
     #[serde(rename = "hits")]
     inner: Vec<Hit<T>>,
@@ -107,7 +107,7 @@ impl<T> SearchResponse<T> {
 
     /** The total number of documents that matched the search query. */
     pub fn total(&self) -> u64 {
-        self.hits.total.value
+        self.hits.total
     }
 
     /** The max score for documents that matched the search query. */
