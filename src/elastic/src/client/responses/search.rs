@@ -78,16 +78,10 @@ pub struct SearchResponse<T> {
 /** Struct to hold the search's Hits, serializable to type `T` or `serde_json::Value`. */
 #[derive(Deserialize, Debug)]
 struct HitsWrapper<T> {
-    total: HitsTotal,
+    total: i64,
     max_score: Option<f32>,
     #[serde(rename = "hits")]
     inner: Vec<Hit<T>>,
-}
-
-#[derive(Deserialize, Debug)]
-struct HitsTotal {
-    value: u64,
-    relation: Option<String>,
 }
 
 impl<T> SearchResponse<T> {
